@@ -1,13 +1,9 @@
 import { Router } from "express";
+import {aiController} from "../controllers/ai.controller.js"
 
-const router = Router();
+const aiRouter = Router();
 
-router.get("/get-response", (req, res) => {
-    const prompt = req.query.prompt;
-    if (!prompt) {
-        return res.status(400).send("Prompt is required")
-    }
-})
+aiRouter.route('/get-response').get(aiController);
 
 
-export {router}
+export {aiRouter}
