@@ -1,14 +1,14 @@
-import { generateContentRequest } from "../services/ai.service";
+import { generateContentRequest } from "../services/ai.service.js";
 
-const aiController = async (req, res) => {
-    const prompt = req.query.prompt;
+const aiReview = async (req, res) => {
+    const code = req.body.code;
 
-    if (!prompt) {
+    if (!code) {
         return res.status(200).send("Prompt is required");
     }
 
-    const response = await generateContentRequest(prompt);
-    res.send(response);
+    const response = await generateContentRequest(code);
+    res.status(200).send(response);
 };
 
-export { aiController };
+export { aiReview };
