@@ -1,5 +1,6 @@
 import { generateContentRequest } from "../services/ai.service.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
 const aiReview = asyncHandler(async (req, res) => {
     const code = req.body.code;
 
@@ -8,7 +9,7 @@ const aiReview = asyncHandler(async (req, res) => {
     }
 
     const response = await generateContentRequest(code);
-    res.status(200).send(response);
+    res.status(200).json(new ApiResponse(200, response, "Success"));
 });
 
 export { aiReview };

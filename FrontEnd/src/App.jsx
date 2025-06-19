@@ -13,13 +13,12 @@ function App() {
     const [review, setReview] = useState(``);
 
     async function reviewCode() {
-        const response = await axios.post(
-            "http://127.0.0.1:8000/ai/get-review",
-            {
+        await axios
+            .post("http://127.0.0.1:8000/ai/get-review", {
                 code,
-            }
-        );
-        setReview(response.data);
+            })
+            .then((response) => setReview(response.data.data))
+            .catch((response) => console.log("bug bug bug"));
     }
 
     return (
