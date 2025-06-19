@@ -1,6 +1,6 @@
 import { generateContentRequest } from "../services/ai.service.js";
-
-const aiReview = async (req, res) => {
+import { asyncHandler } from "../utils/asyncHandler.js";
+const aiReview = asyncHandler(async (req, res) => {
     const code = req.body.code;
 
     if (!code) {
@@ -9,6 +9,6 @@ const aiReview = async (req, res) => {
 
     const response = await generateContentRequest(code);
     res.status(200).send(response);
-};
+});
 
 export { aiReview };
